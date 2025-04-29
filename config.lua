@@ -3,9 +3,6 @@
 -- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
-
-local local_vim = vim -- luacheck:ignore 113
-local local_lvim = lvim -- luacheck:ignore 113
 -- plugins declaration
 lvim.plugins = { -- luacheck:ignore 112
 	-- test suite
@@ -42,24 +39,27 @@ lvim.plugins = { -- luacheck:ignore 112
 	},
 	-- copilot
 	{
-		"github/copilot.vim",
-		event = "VeryLazy",
-		config = function()
-			-- copilot assume mapeado
-			local_vim.g.copilot_assume_mapped = true
-			local_vim.g.copilot_no_tab_map = true
-		end,
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
 	},
 	{
-		"hrsh7th/cmp-copilot",
-		config = function()
-			local_lvim.builtin.cmp.formatting.source_names["copilot"] = "( )"
-			table.insert(local_lvim.builtin.cmp.sources, 2, { name = "copilot" })
-		end,
+		"zbirenbaum/copilot-cmp",
+	},
+	{
+		"onsails/lspkind.nvim",
 	},
 	-- dap suites
 	"mfussenegger/nvim-dap-python",
 	"leoluz/nvim-dap-go",
+	-- misc lsp helpers
+	{
+		"olexsmir/gopher.nvim",
+		ft = "go",
+		-- branch = "develop"
+		-- (optional) will update plugin's deps on every update
+		opts = {},
+	},
 }
 --require('user.tests')
 require("user.python")
@@ -72,3 +72,5 @@ require("user.go")
 --require('user.terminal')
 -- require('user.lua')
 require("user.k8s")
+require("user.copilot")
+require("user.lspkind")

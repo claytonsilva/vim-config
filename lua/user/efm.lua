@@ -25,10 +25,14 @@ local terraform_fmt = require("efmls-configs.formatters.terraform_fmt")
 -- yaml
 local yamllint = require("efmls-configs.linters.yamllint")
 local actionlint = require("efmls-configs.linters.actionlint")
+-- css/sccss
+local stylelint = require("efmls-configs.linters.stylelint")
 
 local languages = {
 	html = { prettier },
-	css = { prettier },
+	css = { prettier, stylelint },
+	scss = { prettier, stylelint },
+	less = { prettier, stylelint },
 	javascript = { eslint, prettier, xo },
 	typescript = { eslint, prettier, xo },
 	lua = { stylua, luacheck },
