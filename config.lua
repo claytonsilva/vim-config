@@ -26,6 +26,18 @@ lvim.plugins = { -- luacheck:ignore 112
 		version = "v1.9.0",
 		dependencies = { "neovim/nvim-lspconfig" },
 	},
+	{
+		"JannoTjarks/tflint.nvim",
+		version = "*",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+		},
+		lazy = true,
+		ft = "terraform",
+		config = function()
+			require("tflint").setup({ tflint_path = "~/.local/bin/tflint" })
+		end,
+	},
 	-- yaml schemas
 	{
 		"someone-stole-my-name/yaml-companion.nvim",
@@ -60,17 +72,32 @@ lvim.plugins = { -- luacheck:ignore 112
 		-- (optional) will update plugin's deps on every update
 		opts = {},
 	},
+	-- misc other plugins
+	{
+		"LukasPietzschmann/telescope-tabs",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+	},
+	{
+		"MagicDuck/grug-far.nvim",
+	},
+  {
+    'voldikss/vim-floaterm',
+
+  },
+	{
+		"folke/persistence.nvim",
+		event = "BufReadPre", -- this will only start session saving when an actual file was opened
+	},
 }
---require('user.tests')
 require("user.python")
 require("user.tests")
 require("user.lsp")
 require("user.efm")
 require("user.go")
 --require('user.rust')
---require('user.terraform')
---require('user.terminal')
--- require('user.lua')
+require('user.options')
 require("user.k8s")
 require("user.copilot")
 require("user.lspkind")
+require("user.keybindings")
+require("user.lualine")
