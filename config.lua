@@ -42,7 +42,7 @@ lvim.plugins = { -- luacheck:ignore 112
 		"towolf/vim-helm",
 		ft = { "helm" },
 	},
--- copilot
+	-- copilot
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
@@ -85,7 +85,7 @@ lvim.plugins = { -- luacheck:ignore 112
 	},
 	{
 		"MagicDuck/grug-far.nvim",
-    version = "v1.6.3",
+		version = "v1.6.3",
 	},
 	{
 		"voldikss/vim-floaterm",
@@ -107,4 +107,3 @@ require("user.copilot")
 require("user.lspkind")
 require("user.keybindings")
 require("user.lualine")
--- require("user.helm")
