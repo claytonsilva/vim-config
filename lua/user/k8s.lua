@@ -1,53 +1,69 @@
--- require("telescope").load_extension("yaml_schema")
--- require('diogo464/kubernetes.nvim').setup {
---   -- this can help with autocomplete. it sets the `additionalProperties` field on type definitions
---   to false if it is not already present.
---   schema_strict = true,
---   -- true:  generate the schema every time the plugin starts
---   -- false: only generate the schema if the files don't already exists. run `:KubernetesGenerateSchema`
---   manually to generate the schema if needed.
---   schema_generate_always = true,
--- }
-local opts = {
-  -- Built in file matchers
-  builtin_matchers = {
-    -- Detects Kubernetes files based on content
-    kubernetes = { enabled = true },
-    cloud_init = { enabled = true }
-  },
-
-  -- Additional schemas available in Telescope picker
-  schemas = {
-    --{
-      --name = "Kubernetes 1.22.4",
-      --uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.22.4-standalone-strict/all.json"
-    --},
-  },
-
-  -- Pass any additional options that will be merged in the final LSP config
-  lspconfig = {
-    flags = {
-      debounce_text_changes = 150,
-    },
-    settings = {
-      redhat = { telemetry = { enabled = false } },
-      yaml = {
-        validate = true,
-        format = { enable = true },
-        hover = true,
-        schemaStore = {
-          enable = true,
-          url = "https://www.schemastore.org/api/json/catalog.json",
-        },
-        schemaDownload = { enable = true },
-        schemas = {},
-        trace = { server = "debug" },
-      },
-    },
-  },
+local schema_sources_base = {
+	kubernetes = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/",
+	jsonschemastore = "https://json.schemastore.org/",
 }
-local cfg = require("yaml-companion").setup(opts)
-require("lspconfig")["yamlls"].setup(cfg)
-require("telescope").load_extension("yaml_schema")
 
+local schema_sources = {
+	kubernetes = schema_sources_base.kubernetes .. "v1.32.1-standalone-strict/all.json",
+	actions = schema_sources_base.jsonschemastore .. "github-workflow.json",
+}
 
+local yamlls_config_options = {
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+	flags = {
+		debounce_text_changes = 150,
+	},
+	settings = {
+		yaml = {
+			schemas = {
+				[schema_sources.actions] = "/.github/workflows/*",
+				[require("kubernetes").yamlls_schema()] = "*.{yaml,yml}",
+			},
+			completion = true,
+			validate = true,
+			format = { enable = true },
+			hover = true,
+			schemaStore = {
+				enable = true,
+				url = "https://www.schemastore.org/api/json/catalog.json",
+			},
+			schemaDownload = { enable = true },
+			trace = { server = "debug" },
+		},
+	},
+}
+
+local lspconfig = require("lspconfig")
+lspconfig.yamlls.setup(yamlls_config_options)
+lspconfig.helm_ls.setup({
+	settings = {
+		["helm-ls"] = {
+			logLevel = "debug",
+			valuesFiles = {
+				mainValuesFile = "values.yaml",
+				lintOverlayValuesFile = "values.lint.yaml",
+				additionalValuesFilesGlobPattern = "values*.yaml",
+			},
+			yamlls = {
+				enabled = true,
+				enabledForFilesGlob = "*.{yaml,yml}",
+				diagnosticsLimit = 50,
+				showDiagnosticsDirectly = true,
+				schemaStore = {
+					enable = true,
+					url = "https://www.schemastore.org/api/json/catalog.json",
+				},
+				path = "yaml-language-server",
+				config = yamlls_config_options.settings.yaml,
+			},
+		},
+	},
+})
+
+-- Disable lsp for helm values files
+local local_vim = vim -- luacheck:ignore 113
+local_vim.api.nvim_create_autocmd("LspAttach", {
+	group = local_vim.api.nvim_create_augroup("DisableLspForValues", {}),
+	pattern = { "values.yaml", "value*.yml" },
+	command = "LspStop",
+})

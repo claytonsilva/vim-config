@@ -8,7 +8,6 @@ lvim.plugins = { -- luacheck:ignore 112
 	-- test suite
 	{
 		"nvim-neotest/neotest",
-		branch = "v5.8.0",
 		dependencies = {
 			"nvim-neotest/neotest-python",
 			"nvim-neotest/neotest-go",
@@ -38,18 +37,12 @@ lvim.plugins = { -- luacheck:ignore 112
 			require("tflint").setup({ tflint_path = "~/.local/bin/tflint" })
 		end,
 	},
-	-- yaml schemas
+	-- yaml schemas and helm templates
 	{
-		"someone-stole-my-name/yaml-companion.nvim",
-		branch = "0.1.3",
-		ft = { "yaml" },
-		dependencies = {
-			{ "neovim/nvim-lspconfig" },
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-telescope/telescope.nvim" },
-		},
+		"towolf/vim-helm",
+		ft = { "helm" },
 	},
-	-- copilot
+-- copilot
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
@@ -72,6 +65,19 @@ lvim.plugins = { -- luacheck:ignore 112
 		-- (optional) will update plugin's deps on every update
 		opts = {},
 	},
+	-- Kubernetes Schema generator
+	{
+		"diogo464/kubernetes.nvim",
+		opts = {
+			-- this can help with autocomplete. it sets the `additionalProperties`
+			-- field on type definitions to false if it is not already present.
+			schema_strict = true,
+			-- true:  generate the schema every time the plugin starts
+			-- false: only generate the schema if the files don't already exists.
+			--        run `:KubernetesGenerateSchema` manually to generate the schema if needed.
+			schema_generate_always = false,
+		},
+	},
 	-- misc other plugins
 	{
 		"LukasPietzschmann/telescope-tabs",
@@ -79,11 +85,11 @@ lvim.plugins = { -- luacheck:ignore 112
 	},
 	{
 		"MagicDuck/grug-far.nvim",
+    version = "v1.6.3",
 	},
-  {
-    'voldikss/vim-floaterm',
-
-  },
+	{
+		"voldikss/vim-floaterm",
+	},
 	{
 		"folke/persistence.nvim",
 		event = "BufReadPre", -- this will only start session saving when an actual file was opened
@@ -95,9 +101,10 @@ require("user.lsp")
 require("user.efm")
 require("user.go")
 --require('user.rust')
-require('user.options')
+require("user.options")
 require("user.k8s")
 require("user.copilot")
 require("user.lspkind")
 require("user.keybindings")
 require("user.lualine")
+-- require("user.helm")

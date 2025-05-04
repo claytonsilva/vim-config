@@ -23,8 +23,8 @@ local rustfmt = require("efmls-configs.formatters.rustfmt")
 -- terraform
 local terraform_fmt = require("efmls-configs.formatters.terraform_fmt")
 -- yaml
-local yamllint = require("efmls-configs.linters.yamllint")
-local actionlint = require("efmls-configs.linters.actionlint")
+-- local yamllint = require("efmls-configs.linters.yamllint")
+-- local actionlint = require("efmls-configs.linters.actionlint")
 -- css/sccss
 local stylelint = require("efmls-configs.linters.stylelint")
 
@@ -42,7 +42,7 @@ local languages = {
 	python = { flake8, autopep8 },
 	rust = { rustfmt },
 	terraform = { terraform_fmt },
-	yaml = { prettier, actionlint, yamllint },
+	-- yaml = { prettier, actionlint, yamllint },
 }
 
 -- Or use the defaults provided by this plugin
