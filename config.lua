@@ -12,7 +12,6 @@ lvim.plugins = { -- luacheck:ignore 112
 			"nvim-neotest/neotest-python",
 			"nvim-neotest/neotest-go",
 			"nvim-neotest/neotest-jest",
-			"rouge8/neotest-rust",
 			"nvim-neotest/nvim-nio",
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",
@@ -59,6 +58,12 @@ lvim.plugins = { -- luacheck:ignore 112
 	"leoluz/nvim-dap-go",
 	-- misc lsp helpers
 	{
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup()
+		end,
+	},
+	{
 		"olexsmir/gopher.nvim",
 		ft = "go",
 		-- branch = "develop"
@@ -78,6 +83,12 @@ lvim.plugins = { -- luacheck:ignore 112
 			schema_generate_always = false,
 		},
 	},
+	-- rust environment
+	-- {
+	-- 	"mrcjkb/rustaceanvim",
+	-- 	version = "v5.26.0", -- Recommended
+	-- 	lazy = true, -- This plugin is already lazy
+	-- },
 	-- misc other plugins
 	{
 		"LukasPietzschmann/telescope-tabs",
@@ -100,7 +111,7 @@ require("user.tests")
 require("user.lsp")
 require("user.efm")
 require("user.go")
---require('user.rust')
+-- require("user.rust")
 require("user.options")
 require("user.k8s")
 require("user.copilot")

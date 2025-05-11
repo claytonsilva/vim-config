@@ -16,8 +16,8 @@ local yamlls_config_options = {
 	settings = {
 		yaml = {
 			schemas = {
-				[schema_sources.actions] = "/.github/workflows/*",
-				[require("kubernetes").yamlls_schema()] = "*.{yaml,yml}",
+				[schema_sources.actions] = "/.github/workflows/*.{yaml,yml}",
+				[require("kubernetes").yamlls_schema()] = "{templates,clusters,common}/**/*.{yaml,yml}",
 			},
 			completion = true,
 			validate = true,
@@ -64,6 +64,6 @@ lspconfig.helm_ls.setup({
 local local_vim = vim -- luacheck:ignore 113
 local_vim.api.nvim_create_autocmd("LspAttach", {
 	group = local_vim.api.nvim_create_augroup("DisableLspForValues", {}),
-	pattern = { "values.yaml", "value*.yml" },
+	pattern = { "values.yaml", "value*.yml" , "Chart.yml", "Chart.yaml"},
 	command = "LspStop",
 })
