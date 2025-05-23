@@ -36,4 +36,4 @@ local_vim.g.mapleader = " "
 local_vim.g.maplocalleader = "\\"
 
 -- lazyvim options
--- local_vim.g.lazyvim_picker = "telescope"
+local_vim.g.ai_cmp = true

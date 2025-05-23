@@ -27,7 +27,6 @@ local terraform_fmt = require("efmls-configs.formatters.terraform_fmt")
 -- local actionlint = require("efmls-configs.linters.actionlint")
 -- css/sccss
 local stylelint = require("efmls-configs.linters.stylelint")
-
 local languages = {
   html = { prettier },
   css = { prettier, stylelint },
