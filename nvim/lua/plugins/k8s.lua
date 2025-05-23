@@ -41,6 +41,11 @@ return {
       vim.list_extend(opts.ensure_installed, { "yaml", "helm" })
     end,
   },
+  -- yaml schemas and helm templates
+  {
+    "towolf/vim-helm",
+    ft = { "helm" },
+  },
   {
     "neovim/nvim-lspconfig",
     dependencies = {

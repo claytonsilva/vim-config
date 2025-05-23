@@ -12,11 +12,7 @@ return {
     "nvim-neotest/neotest-jest",
     "nvim-neotest/nvim-nio",
     "antoinemadec/FixCursorHold.nvim",
-    "nvim-treesitter/nvim-treesitter",
-    "nvim-lua/plenary.nvim",
     "nvim-neotest/neotest-plenary",
-    -- "nvim-neotest/neotest-rust",
-    "nvim-neotest/neotest-vim-test",
   },
   -- linters and formarters (efm instead null-ls)
   {
@@ -35,11 +31,6 @@ return {
     config = function()
       require("tflint").setup({ tflint_path = "~/.local/bin/tflint" })
     end,
-  },
-  -- yaml schemas and helm templates
-  {
-    "towolf/vim-helm",
-    ft = { "helm" },
   },
   {
     "onsails/lspkind.nvim",
