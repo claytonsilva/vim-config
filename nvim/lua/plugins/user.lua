@@ -1,0 +1,80 @@
+-- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
+--
+-- In your plugin files, you can:
+-- * add extra plugins
+-- * disable/enabled LazyVim plugins
+-- * override the configuration of LazyVim plugins
+return {
+  -- migrated from lunarvim
+  {
+    "nvim-neotest/neotest-python",
+    "nvim-neotest/neotest-go",
+    "nvim-neotest/neotest-jest",
+    "nvim-neotest/nvim-nio",
+    "antoinemadec/FixCursorHold.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "nvim-lua/plenary.nvim",
+    "nvim-neotest/neotest-plenary",
+    -- "nvim-neotest/neotest-rust",
+    "nvim-neotest/neotest-vim-test",
+  },
+  -- linters and formarters (efm instead null-ls)
+  {
+    "creativenull/efmls-configs-nvim",
+    version = "v1.9.0",
+    dependencies = { "neovim/nvim-lspconfig" },
+  },
+  {
+    "JannoTjarks/tflint.nvim",
+    version = "*",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+    },
+    lazy = true,
+    ft = "terraform",
+    config = function()
+      require("tflint").setup({ tflint_path = "~/.local/bin/tflint" })
+    end,
+  },
+  -- yaml schemas and helm templates
+  {
+    "towolf/vim-helm",
+    ft = { "helm" },
+  },
+  -- copilot
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+  },
+  {
+    "onsails/lspkind.nvim",
+  },
+  -- dap suites
+  "mfussenegger/nvim-dap-python",
+  "leoluz/nvim-dap-go",
+  -- misc lsp helpers
+  {
+    "olexsmir/gopher.nvim",
+    ft = "go",
+    -- branch = "develop"
+    -- (optional) will update plugin's deps on every update
+    opts = {},
+  },
+  -- Kubernetes Schema generator
+  {
+    "diogo464/kubernetes.nvim",
+    opts = {
+      -- this can help with autocomplete. it sets the `additionalProperties`
+      -- field on type definitions to false if it is not already present.
+      schema_strict = true,
+      -- true:  generate the schema every time the plugin starts
+      -- false: only generate the schema if the files don't already exists.
+      --        run `:KubernetesGenerateSchema` manually to generate the schema if needed.
+      schema_generate_always = false,
+    },
+  },
+}
