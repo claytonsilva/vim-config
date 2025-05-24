@@ -32,9 +32,6 @@ return {
       require("tflint").setup({ tflint_path = "~/.local/bin/tflint" })
     end,
   },
-  {
-    "onsails/lspkind.nvim",
-  },
   -- dap suites
   "mfussenegger/nvim-dap-python",
   "leoluz/nvim-dap-go",

@@ -19,7 +19,10 @@ require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-
+    {
+      "folke/flash.nvim",
+      enabled = false,
+    },
     -- Kubernetes Schema generator
     {
       "diogo464/kubernetes.nvim",
