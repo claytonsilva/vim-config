@@ -3,6 +3,7 @@
 -- Add any additional options here
 -- luacheck: ignore 113
 local local_vim = vim
+local_vim.o.autoindent = true
 local_vim.o.cursorline = true
 local_vim.o.expandtab = true
 local_vim.o.hidden = true
