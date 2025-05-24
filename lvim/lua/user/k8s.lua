@@ -6,6 +6,7 @@ local schema_sources_base = {
 local schema_sources = {
 	kubernetes = schema_sources_base.kubernetes .. "v1.32.1-standalone-strict/all.json",
 	actions = schema_sources_base.jsonschemastore .. "github-workflow.json",
+	chart = schema_sources_base.jsonschemastore .. "chart.json",
 }
 
 local yamlls_config_options = {
@@ -17,6 +18,7 @@ local yamlls_config_options = {
 		yaml = {
 			schemas = {
 				[schema_sources.actions] = "/.github/workflows/*.{yaml,yml}",
+				[schema_sources.chart] = "Chart.{yml,yaml}",
 				[require("kubernetes").yamlls_schema()] = "{templates,clusters,common}/**/*.{yaml,yml}",
 			},
 			completion = true,
@@ -64,6 +66,6 @@ lspconfig.helm_ls.setup({
 local local_vim = vim -- luacheck:ignore 113
 local_vim.api.nvim_create_autocmd("LspAttach", {
 	group = local_vim.api.nvim_create_augroup("DisableLspForValues", {}),
-	pattern = { "values.yaml", "value*.yml" , "Chart.yml", "Chart.yaml"},
+	pattern = { "values.yaml", "value*.yml", "value*.yaml", "*values.yaml", "*values.yml" },
 	command = "LspStop",
 })

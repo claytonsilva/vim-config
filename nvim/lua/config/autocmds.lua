@@ -12,6 +12,6 @@
 local local_vim = vim -- luacheck:ignore 113
 local_vim.api.nvim_create_autocmd("LspAttach", {
   group = local_vim.api.nvim_create_augroup("DisableLspForValues", {}),
-  pattern = { "values.yaml", "value*.yml", "Chart.yml", "Chart.yaml" },
+  pattern = { "values.yaml", "value*.yml", "value*.yaml", "*values.yaml", "*values.yml" },
   command = "LspStop",
 })

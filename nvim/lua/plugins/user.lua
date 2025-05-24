@@ -43,4 +43,13 @@ return {
     -- (optional) will update plugin's deps on every update
     opts = {},
   },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      -- luacheck: ignore 113
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
 }

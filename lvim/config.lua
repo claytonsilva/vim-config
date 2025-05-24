@@ -18,6 +18,17 @@ lvim.plugins = { -- luacheck:ignore 112
 			"nvim-lua/plenary.nvim",
 		},
 	},
+	-- preview in markdown
+
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function()
+			-- luacheck: ignore 113
+			vim.fn["mkdp#util#install"]()
+		end,
+	},
 	-- linters and formarters (efm instead null-ls)
 	{
 		"creativenull/efmls-configs-nvim",
