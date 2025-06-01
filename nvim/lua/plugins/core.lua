@@ -58,6 +58,8 @@ return {
         "lua",
         "toml",
         "markdown",
+        "ninja",
+        "rst",
       },
     },
   },
