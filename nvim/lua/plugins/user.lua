@@ -4,6 +4,24 @@
 -- * add extra plugins
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
+
+local function return_tflint_path()
+  -- luacheck: ignore 113
+  -- This function can be used to return the path to tflint
+  -- It can be customized based on your environment
+  if vim.fn.has("macunix") == 1 then
+    -- Check if tflint is installed via Homebrew on macOS
+    if vim.fn.executable("/opt/homebrew/bin/tflint") == 1 then
+      return "/opt/homebrew/bin/tflint"
+    elseif vim.fn.executable("/usr/local/bin/tflint") == 1 then
+      return "/usr/local/bin/tflint"
+    end
+  else
+    -- For other systems, you can specify a different path or leave it empty
+    return "~/.local/bin/tflint"
+  end
+end
+
 return {
   -- migrated from lunarvim
   {
@@ -29,7 +47,9 @@ return {
     lazy = true,
     ft = "terraform",
     config = function()
-      require("tflint").setup({ tflint_path = "~/.local/bin/tflint" })
+      require("tflint").setup({
+        tflint_path = return_tflint_path(),
+      })
     end,
   },
   -- dap suites

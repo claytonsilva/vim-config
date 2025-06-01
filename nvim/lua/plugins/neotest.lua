@@ -1,12 +1,13 @@
 return {
+  { "nvim-neotest/neotest-plenary" },
   {
     "nvim-neotest/neotest",
     opts = {
       adapters = {
         "neotest-plenary",
-        "neotesrt-go",
-        "neotest-python",
+        "neotest-go",
         "rustaceanvim.neotest",
+        "neotest-python",
       },
     },
   },
