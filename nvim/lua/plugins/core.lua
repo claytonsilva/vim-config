@@ -52,6 +52,7 @@ return {
         "gosum",
         "python",
         "rust",
+        "ron",
         "terraform",
         "javascript",
         "typescript",

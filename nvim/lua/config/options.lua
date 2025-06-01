@@ -45,3 +45,6 @@ local_vim.g.ai_cmp = true
 local_vim.g.lazyvim_python_lsp = "pyright"
 -- Set to "ruff_lsp" to use the old LSP implementation version.
 local_vim.g.lazyvim_python_ruff = "ruff"
+
+-- rust options
+local_vim.g.lazyvim_rust_diagnostics = "rust-analyzer"

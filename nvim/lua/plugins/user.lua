@@ -18,7 +18,7 @@ local function return_tflint_path()
     end
   else
     -- For other systems, you can specify a different path or leave it empty
-    return "~/.local/bin/tflint"
+    return vim.env.HOME .. "/.local/bin/tflint"
   end
 end
 
