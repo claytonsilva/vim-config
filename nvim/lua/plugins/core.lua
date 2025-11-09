@@ -61,6 +61,11 @@ return {
         "markdown",
         "ninja",
         "rst",
+        --- for makefile
+        "clang",
+        "gcc",
+        "make",
+        "cmake",
       },
     },
   },
