@@ -27,7 +27,7 @@ local_vim.o.backspace = "indent,eol,start"
 local_vim.o.clipboard = "unnamedplus"
 local_vim.o.signcolumn = "yes"
 local_vim.o.encoding = "utf-8"
-local_vim.o.fileencoding = "utf-8"
+local_vim.o.fileencodings = "utf-8"
 -- local_vim.o.fillchars = local_vim.o.fillchars .. "eob: "
 
 -- local_vim.o.mouse = local_vim.o.mouse .. "a"

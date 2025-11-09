@@ -32,6 +32,9 @@ return {
     "antoinemadec/FixCursorHold.nvim",
     "nvim-neotest/neotest-plenary",
   },
+  -- diff tool
+  --
+  { "akinsho/git-conflict.nvim", version = "*", config = true },
   -- linters and formarters (efm instead null-ls)
   {
     "creativenull/efmls-configs-nvim",
