@@ -15,3 +15,20 @@ local_vim.api.nvim_create_autocmd("LspAttach", {
   pattern = { "values.yaml", "value*.yml", "value*.yaml", "*values.yaml", "*values.yml" },
   command = "LspStop",
 })
+
+-- Disable spell check for certain file types
+local_vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "txt" },
+  callback = function()
+    local_vim.opt_local.spell = false
+  end,
+})
+
+-- local_vim.api.nvim_create_autocmd("FocusGained", {
+--   group = local_vim.api.nvim_create_augroup("PopOutOfInsertMode", {}),
+--   callback = function()
+--     if local_vim.fn.mode() == "i" then
+--       local_vim.api.nvim_feedkeys(local_vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
+--     end
+--   end,
+-- })
