@@ -28,13 +28,17 @@ return {
             },
           },
         },
+        pyright = {
+          mason = false,
+          --  autostart = false,
+        },
       },
       setup = {
         ["ruff"] = function()
-          LazyVim.lsp.on_attach(function(client, _)
+          Snacks.util.lsp.on({ name = "*" }, function(_, client)
             -- Disable hover in favor of Pyright
             client.server_capabilities.hoverProvider = false
-          end, "ruff")
+          end)
         end,
       },
     },

@@ -23,6 +23,11 @@ local yamllint = require("efmls-configs.linters.yamllint")
 -- local actionlint = require("efmls-configs.linters.actionlint")
 -- css/sccss
 local stylelint = require("efmls-configs.linters.stylelint")
+-- python
+local ruff = require("efmls-configs.linters.ruff")
+local ruff_formatter = require("efmls-configs.formatters.ruff")
+local ruff_sort = require("efmls-configs.formatters.ruff_sort")
+
 local languages = {
   html = { prettier },
   css = { prettier, stylelint },
@@ -37,6 +42,7 @@ local languages = {
   rust = { rustfmt },
   terraform = { terraform_fmt },
   yaml = { prettier, yamllint },
+  python = { ruff, ruff_formatter, ruff_sort },
 }
 
 -- Or use the defaults provided by this plugin
