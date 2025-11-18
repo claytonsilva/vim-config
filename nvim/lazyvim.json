@@ -18,7 +18,10 @@
     "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.util.dot",
     "lazyvim.plugins.extras.util.gitui",
-    "lazyvim.plugins.extras.vscode"
+    "lazyvim.plugins.extras.vscode",
+    "lazyvim.plugins.extras.ai.copilot",
+    "lazyvim.plugins.extras.ai.copilot-chat",
+    "lazyvim.plugins.extras.ai.avante"
   ],
   "install_version": 8,
   "news": {

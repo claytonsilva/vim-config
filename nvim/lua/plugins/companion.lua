@@ -5,7 +5,15 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "ravitemer/mcphub.nvim",
+      {
+        "ravitemer/mcphub.nvim",
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+        },
+        config = function()
+          require("mcphub").setup()
+        end,
+      },
     },
   },
   {
